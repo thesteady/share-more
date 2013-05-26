@@ -14,6 +14,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    fail
     @article = Article.new(params[:article])
 
     @article.save

@@ -1,5 +1,4 @@
 class AuthorsController < ApplicationController
-  before_filter :zero_authors_or_authenticated, :only => [:new, :create]
   before_filter :require_login, :except => [:new, :create]
   
 
@@ -48,6 +47,7 @@ class AuthorsController < ApplicationController
 
     respond_to do |format|
       if @author.save
+        auto_login(@author)
         format.html { redirect_to @author, notice: 'Author was successfully created.' }
         format.json { render json: @author, status: :created, location: @author }
       else
