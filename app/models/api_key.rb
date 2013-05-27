@@ -11,23 +11,21 @@ class ApiKey < ActiveRecord::Base
 
   before_create :generate_access_token
   validates_uniqueness_of :access_token
-
-  after_create :expire_old_keys_per_author
-
   
+  scope :active,  where(:expired=> false)
+
 private
 
-  def expire_old_keys_per_author### this is super broken`
-    ApiKey.where( #### Does This Skip Validation??? ### 
-      :author_id == self.author_id,
-      :expired == false,
-      :id != self.id).update_all(:expired => true)
+  # after_create :expire_old_keys_per_author
+  # def expire_old_keys_per_author### this is super broken`
 
-    # ApiKey.where(:author_id == self.author_id, :expired == false, :id != self.id).each do |api_key| 
-    #     api_key.expired = true
-    #     api_key.save
-    #   end
-  end
+    # ApiKey.where(:author_id => self.author_id, :expired => false).order("created_at DESC").offset(1).each do |api_key| 
+    #   api_key.expired = true
+    #   api_key.save
+    # end
+  
+    # ApiKey.where(:author_id => self.author_id, :expired => false).order("created_at DESC").offset(1).update_all(:expired => true)
+  # end
 
   # def valid
     

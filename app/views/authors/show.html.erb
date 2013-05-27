@@ -9,10 +9,6 @@
 </p>
 
 <p>
-  <b>api_key:</b>
-  <%= @author.active_token %>
+  <b>Access Token: </b> <%= @author.active_token %>
+  <%=button_to "Refresh Access Token", refresh_path, class: "btn btn-mini btn-warning" %>
 </p>
-
-
-<%= link_to 'Edit', edit_author_path(@author) %> |
-<%= link_to 'Back', authors_path %>

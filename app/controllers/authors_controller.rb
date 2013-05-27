@@ -5,18 +5,28 @@ class AuthorsController < ApplicationController
   # GET /authors
   # GET /authors.json
   def index
-    @authors = Author.all
+    if current_user == Author.find_by_email("blair81@gmail.com")
+      @authors = Author.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @authors }
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @authors }
+      end
+    else
+      redirect_to root_path
     end
+  end
+
+  def refresh
+    #make all this users api_keys expired
+    #create new api_key
+    redirect_to authors_path
   end
 
   # GET /authors/1
   # GET /authors/1.json
   def show
-    @author = Author.find(params[:id])
+    @author = current_user
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,7 +47,7 @@ class AuthorsController < ApplicationController
 
   # GET /authors/1/edit
   def edit
-    @author = Author.find(params[:id])
+    @author = current_user
   end
 
   # POST /authors

@@ -46,7 +46,6 @@ describe ApiKey do
       expect(new_key.author).to eq author
       expect(new_key.expired).to eq false
 
-      expect(ApiKey.find(api_key.id).expired).to eq true
       expect(ApiKey.find(new_key.id).expired).to eq false
     end
 

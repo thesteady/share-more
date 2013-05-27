@@ -59,12 +59,9 @@ describe Author do
 
     describe '#active_token' do
       it 'should return the access_token of the active-key' do
-
-        expect(author.api_keys.first.access_token).to eq String
+        expect(author.api_keys.first.access_token.class).to eq String
         expect(author.active_token).to eq author.api_keys.first.access_token
       end
-
-      it 'only the most recent should not be expired'
     end
   end
 end

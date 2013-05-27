@@ -17,7 +17,7 @@ class Author < ActiveRecord::Base
   after_create :build_first_key
 
   def active_token
-    self.api_keys.all.map{|a|[a.access_token, a.expired]}
+    self.api_keys.active.limit(1).first.access_token
   end
 
 
