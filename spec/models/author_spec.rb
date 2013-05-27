@@ -46,6 +46,21 @@ describe Author do
       create_author
     end
 
+    describe '#expire_old_keys_and_build_new_key' do
+      it 'should expire old keys and build a new one' do
+        count = 5 
+        count.times do
+          author.build_key
+        end
+        expect(ApiKey.count).to eq count+1
+        expect(author.api_keys.count).to eq count+1
+        expect(author.api_keys.active.count).to eq count+1
+
+        author.expire_old_keys_and_build_new_key
+        expect(author.api_keys.active.count).to eq 1
+      end
+    end
+
     describe '#build_first_key' do 
       it 'should create an api_key after the Author is first created' do 
         expect(author.api_keys.first).to be_kind_of ApiKey
@@ -60,7 +75,7 @@ describe Author do
     describe '#active_token' do
       it 'should return the access_token of the active-key' do
         expect(author.api_keys.first.access_token.class).to eq String
-        expect(author.active_token).to eq author.api_keys.first.access_token
+        expect(author.active_token).to eq author.api_keys.active.first.access_token
       end
     end
   end

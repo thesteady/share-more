@@ -18,8 +18,7 @@ class AuthorsController < ApplicationController
   end
 
   def refresh
-    #make all this users api_keys expired
-    #create new api_key
+    current_user.expire_old_keys_and_build_new_key
     redirect_to authors_path
   end
 

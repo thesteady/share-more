@@ -48,6 +48,15 @@ describe ApiKey do
 
       expect(ApiKey.find(new_key.id).expired).to eq false
     end
+    describe '#deactivate' do
+      it 'should flip the expired attribute from false to true' do
+        expect(api_key.expired).to eq false
+        api_key.deactivate
+        expect(api_key.expired).to eq true
+        api_key.deactivate
+        expect(api_key.expired).to eq true
+      end
+    end
 
   end
 end

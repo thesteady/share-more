@@ -12,22 +12,30 @@ class Author < ActiveRecord::Base
 
   has_many :api_keys
 
-  # has_one :active_key, :class_name => "ApiKey", :conditions => "author_id = self.id, expired = false, limit=1"
-
   after_create :build_first_key
 
-  def active_token
-    self.api_keys.active.limit(1).first.access_token
+  def active_key
+    self.api_keys.active.limit(1).first
   end
 
+  def active_token
+    active_key.access_token
+  end
+
+  def build_key
+    self.api_keys.create(expired: false)
+  end
+
+  def expire_old_keys_and_build_new_key
+    self.api_keys.active.each(&:deactivate)
+    self.build_key
+  end
 
 private
 
   def build_first_key
-    self.api_keys.create(expired: false)
+    unless self.api_keys.count > 0
+      build_key
+    end
   end
-
-  # def valid_api
-  #   key = ApiKey.where(author_id: id, expired: false).order("created_at ASC").first_or_
-  # end
 end

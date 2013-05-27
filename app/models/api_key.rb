@@ -2,35 +2,23 @@ class ApiKey < ActiveRecord::Base
   attr_accessible :expired
   belongs_to :author
 
-  # def valid?
-  #   self.expired == false
-  # end
-
   validates_presence_of :author_id
   validates :expired, :inclusion => { :in => [true, false] }
 
   before_create :generate_access_token
   validates_uniqueness_of :access_token
   
-  scope :active,  where(:expired=> false)
+  scope :active,  where(:expired=> false).order("created_at DESC")
+  scope :inactive,  where(:expired=> true).order("created_at DESC")
+
+  def deactivate
+    unless self.expired == true
+      self.toggle(:expired)
+      self.save
+    end
+  end
 
 private
-
-  # after_create :expire_old_keys_per_author
-  # def expire_old_keys_per_author### this is super broken`
-
-    # ApiKey.where(:author_id => self.author_id, :expired => false).order("created_at DESC").offset(1).each do |api_key| 
-    #   api_key.expired = true
-    #   api_key.save
-    # end
-  
-    # ApiKey.where(:author_id => self.author_id, :expired => false).order("created_at DESC").offset(1).update_all(:expired => true)
-  # end
-
-  # def valid
-    
-  # end
-
   def generate_access_token
     begin
       self.access_token = SecureRandom.urlsafe_base64(24)
