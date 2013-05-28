@@ -4,22 +4,23 @@
   <title>BlairGist</title>
   <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" ,"application", :media => "all" %>
   <%= javascript_include_tag "application", "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"%>
+  <%= aced_tag %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <div class="container">
   <div class="masthead">
-    <h3 class="muted">BlairGist</h3>
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
           <ul class="nav">
+            <li><%= link_to "BlairGist", root_path, class: "brand" %></li>
             <% if logged_in? %>
-              <li><%= link_to 'Home/Dashboard', authors_path%></li>
+              <li><%= link_to 'Author Dashboard', authors_path%></li>
+              <li><%= link_to 'New Article', new_article_path %></li>
               <li><%= link_to 'Logout', logout_path%></li>
             <% else %>
-              <li><a href="/">Home</a></li>
-              <li><%= link_to 'Create Account', new_author_path %></li>
+              <li><%= link_to 'Create Account', new_authors_path %></li>
               <li><%= link_to 'Login', login_path%></li>
             <% end %>
 <!--             <li class="active"><a href="#">Projects</a></li>

@@ -1,22 +1,29 @@
-<h1><%= @article.title %></h1>
-<p>Tags: <%= tag_links(@article.tags) %></p>
+<div class="container">
+  <h1><%= @article.title.titleize %></h1>
+  <p>Tags: <%= tag_links(@article.tags) %></p>
+  <% if logged_in? %>
+    <%= link_to "edit", edit_article_path(@article), class: 'label label-warning' %>
+    <%= link_to "delete", article_path(@article), :method => :delete, :confirm => "Really delete the article?", class: 'label label-important' %>
+  <% end %>
 
-<p><%= @article.body %></p>
+  <p class="lead">
+    <%= @article.body %>
+  </p>
 
-<% if @article.image_file_name %>
-  <p><%= image_tag @article.image.url %></p>
-<% end %>
+  <% if @article.image_file_name %>
+    <p><%= image_tag @article.image.url %></p>
+  <% end %>
 
-<h3>Comments (<%= @article.comments.count %>)</h3>
 
-<%= render :partial => 'comment', :collection => @article.comments %>
 
-<%= render :partial => 'comment_form' %>
 
-<%= link_to "<< Back to Articles List", articles_path %>
+  <div class="span5">
+    <h3>Comments (<%= @article.comments.count %>)</h3>
+    <%= render :partial => 'comment', :collection => @article.comments %>
+  </div>
 
-<% if logged_in? %>
-  <%= link_to "edit", edit_article_path(@article) %>
+  <div class="span5">
+    <%= render :partial => 'comment_form' %>
+  </div>
 
-  <%= link_to "delete", article_path(@article), :method => :delete, :confirm => "Really delete the article?" %>
-<% end %>
+</div>
