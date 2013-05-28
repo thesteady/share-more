@@ -1,5 +1,7 @@
 # JSON Blog
 
+[![Build Status](https://travis-ci.org/blairand/blog-api.png?branch=master)](https://travis-ci.org/blairand/blog-api) [![Code Climate](https://codeclimate.com/github/blairand/blog-api.png)](https://codeclimate.com/github/blairand/blog-api)
+
 Recreating github Gists as closely as possible, starting with the API, then building out the frontend. 
 
 [PivotalTracker](https://www.pivotaltracker.com/s/projects/835205) 
