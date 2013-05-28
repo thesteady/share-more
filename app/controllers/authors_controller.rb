@@ -1,9 +1,6 @@
 class AuthorsController < ApplicationController
   before_filter :require_login, :except => [:new, :create]
   
-
-  # GET /authors
-  # GET /authors.json
   def index
     if current_user == Author.find_by_email("blair81@gmail.com")
       @authors = Author.all
@@ -22,82 +19,42 @@ class AuthorsController < ApplicationController
     redirect_to authors_path
   end
 
-  # GET /authors/1
-  # GET /authors/1.json
   def show
     @author = current_user
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @author }
-    end
   end
 
-  # GET /authors/new
-  # GET /authors/new.json
   def new
     @author = Author.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @author }
-    end
   end
 
-  # GET /authors/1/edit
   def edit
     @author = current_user
   end
 
-  # POST /authors
-  # POST /authors.json
   def create
     @author = Author.new(params[:author])
 
-    respond_to do |format|
-      if @author.save
-        auto_login(@author)
-        format.html { redirect_to @author, notice: 'Author was successfully created.' }
-        format.json { render json: @author, status: :created, location: @author }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @author.errors, status: :unprocessable_entity }
-      end
+    if @author.save
+      auto_login(@author)
+      redirect_to authors_path, notice: 'Author was successfully created.'
+    else
+      render action: "new"
     end
   end
 
-  # PUT /authors/1
-  # PUT /authors/1.json
   def update
     @author = Author.find(params[:id])
 
-    respond_to do |format|
-      if @author.update_attributes(params[:author])
-        format.html { redirect_to @author, notice: 'Author was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @author.errors, status: :unprocessable_entity }
-      end
+    if @author.update_attributes(params[:author])
+      redirect_to authors_url, notice: 'Author was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 
-  # DELETE /authors/1
-  # DELETE /authors/1.json
   def destroy
     @author = Author.find(params[:id])
     @author.destroy
-
-    respond_to do |format|
-      format.html { redirect_to authors_url }
-      format.json { head :no_content }
-    end
-  end
-
-  def zero_authors_or_authenticated
-    unless Author.count == 0 || current_user
-      redirect_to root_path
-      return false
-    end
+    redirect_to authors_url
   end
 end
