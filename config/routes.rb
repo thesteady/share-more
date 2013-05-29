@@ -3,12 +3,10 @@ Blogger::Application.routes.draw do
 
   resource :authors
   resources :articles
-  resources :comments
-  resources :tags
   resources :author_sessions
 
   post 'refresh' => 'authors#refresh',         :as => :refresh
-  match 'login'  => 'author_sessions#new',     :as => :login
-  match 'logout' => 'author_sessions#destroy', :as => :logout
-  
+  get 'login'    => 'author_sessions#new',     :as => :login
+  get 'logout'   => 'author_sessions#destroy', :as => :logout
+  get 'signup'   => 'authors#new',             :as => :signup
 end

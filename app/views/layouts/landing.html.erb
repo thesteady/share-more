@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Twoots</title>
+  <title><%= title %></title>
   <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" ,"application", "overrides" %>
   <%= javascript_include_tag "application", "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"%>
   <%= csrf_meta_tags %>
@@ -10,9 +10,9 @@
 
 <%= render 'shared/header_nav' %>
 <div class="jumbotron">
-  <h1>Twooter!</h1>
-  <p class="lead">Do your amazing thoughts take more than 140 characters to explain?</p>
-  <%= link_to "Get Started Today", login_path, class: "btn btn-large btn-success" %>
+  <h1><%= title %></h1>
+  <p class="lead">Share What’s Happening, Right Now, Without a Character Limit.</p>
+  <%= link_to "Get Started Today", signup_path, class: "btn btn-large btn-success" %>
 </div>
 
 <hr>
