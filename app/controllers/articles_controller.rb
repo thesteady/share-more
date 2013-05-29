@@ -1,8 +1,24 @@
 class ArticlesController < ApplicationController
   before_filter :require_login, :except => [:index, :show]
-    
+  # layout :layout_by_resource, :only => [:index]
+
+  # def layout_by_resource
+  #   if current_user.present?
+  #     'application'
+  #    else
+  #     'landing'
+  #   end
+  # end
+
   def index
-    @articles = Article.all
+    if current_user.present?
+      @articles = current_user.articles.all
+      render :layout => 'application'
+    else
+      @articles = []
+      render :layout => 'layouts/landing'
+    end
+
   end
 
   def show
@@ -14,7 +30,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(params[:article])
+    @article = current_user.articles.new(params[:article])
 
     @article.save
 

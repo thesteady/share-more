@@ -1,8 +1,0 @@
-<h3>Post a Comment</h3>
-
-<%= simple_form_for(@article.comments.new, :html => {:multipart => true, :class => 'form-vertical'}) do |f| %>
-  <%= f.hidden_field :article_id %>
-  <%= f.input_field :author_name, placeholder: "Your Name", class: "input-block-level" %>
-  <%= f.input_field :body, style: "height: 100px;" , class: "input-block-level" %>
-  <%= f.button :submit, class: "btn btn-block" %>
-<% end %>

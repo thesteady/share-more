@@ -2,53 +2,21 @@
 <html>
 <head>
   <title>BlairGist</title>
-  <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" ,"application", :media => "all" %>
+  <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" ,"application", "overrides" %>
   <%= javascript_include_tag "application", "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"%>
   <%= aced_tag %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container">
-  <div class="masthead">
-    <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-          <ul class="nav">
-            <li><%= link_to "BlairGist", root_path, class: "brand" %></li>
-            <% if logged_in? %>
-              <li><%= link_to 'Author Dashboard', authors_path%></li>
-              <li><%= link_to 'New Article', new_article_path %></li>
-              <li><%= link_to 'Logout', logout_path%></li>
-            <% else %>
-              <li><%= link_to 'Create Account', new_authors_path %></li>
-              <li><%= link_to 'Login', login_path%></li>
-            <% end %>
-<!--             <li class="active"><a href="#">Projects</a></li>
-            <li><a href="#">Downloads</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li> -->
-          </ul>
-        </div>
-      </div>
-    </div><!-- /.navbar -->
-  </div>
+<%= render 'shared/header_nav' %>
+
 <% if flash.notice %>
   <p class="flash">
     <%= flash.notice %>
   </p>
 <% end %>
-
 <%= yield %>
-
-
-  <hr>
-
-  <div class="footer">
-    <p>&copy; Company 2013</p>
-  </div>
-
-</div> <!-- /container -->
-<%# if Rails.env.development? %>
+<%= render 'shared/footer' %>
 </body>
 </html>
 

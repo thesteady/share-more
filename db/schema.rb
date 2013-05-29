@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527002058) do
+ActiveRecord::Schema.define(:version => 20130529204116) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -24,13 +24,12 @@ ActiveRecord::Schema.define(:version => 20130527002058) do
   create_table "articles", :force => true do |t|
     t.string   "title"
     t.text     "body"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "author_id"
   end
+
+  add_index "articles", ["author_id"], :name => "index_articles_on_author_id"
 
   create_table "authors", :force => true do |t|
     t.string   "username",         :null => false
@@ -41,25 +40,14 @@ ActiveRecord::Schema.define(:version => 20130527002058) do
     t.datetime "updated_at",       :null => false
   end
 
-  create_table "comments", :force => true do |t|
-    t.integer  "article_id"
-    t.string   "author_name"
+  create_table "revisions", :force => true do |t|
     t.text     "body"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
     t.integer  "article_id"
+    t.integer  "published"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "tags", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+  add_index "revisions", ["article_id"], :name => "index_revisions_on_article_id"
 
 end

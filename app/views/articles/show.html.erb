@@ -1,29 +1,8 @@
-<div class="container">
+<div class="article">
   <h1><%= @article.title.titleize %></h1>
-  <p>Tags: <%= tag_links(@article.tags) %></p>
+  <%= simple_format @article.body %>
+</div>
   <% if logged_in? %>
-    <%= link_to "edit", edit_article_path(@article), class: 'label label-warning' %>
+    <%= link_to "edit", edit_article_path(@article) , class: 'label label-warning' %>
     <%= link_to "delete", article_path(@article), :method => :delete, :confirm => "Really delete the article?", class: 'label label-important' %>
   <% end %>
-
-  <p class="lead">
-    <%= @article.body %>
-  </p>
-
-  <% if @article.image_file_name %>
-    <p><%= image_tag @article.image.url %></p>
-  <% end %>
-
-
-
-
-  <div class="span5">
-    <h3>Comments (<%= @article.comments.count %>)</h3>
-    <%= render :partial => 'comment', :collection => @article.comments %>
-  </div>
-
-  <div class="span5">
-    <%= render :partial => 'comment_form' %>
-  </div>
-
-</div>

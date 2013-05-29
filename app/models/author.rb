@@ -11,6 +11,7 @@ class Author < ActiveRecord::Base
   validates_confirmation_of :password, :message => "should match confirmation", :if => :password
 
   has_many :api_keys
+  has_many :articles
 
   after_create :build_first_key
 
