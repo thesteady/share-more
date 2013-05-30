@@ -1,0 +1,10 @@
+<div class="well">
+  <div id="article_actions" class="pull-right">
+    <%= link_to "edit", edit_article_path(article) , class: 'label label-warning' %>
+    <%= link_to "delete", article_path(article), :method => :delete, :confirm => "Really delete the article?", class: 'label label-important' %>
+  </div>
+  <div class="article">
+    <h1><%= article.title.titleize %></h1>
+    <%= simple_format article.body %>
+  </div>
+</div>

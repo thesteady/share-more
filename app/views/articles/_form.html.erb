@@ -1,10 +1,8 @@
-  <div class="well span4 clearfix">
-    <%= simple_form_for(@article, :html => {:multipart => true, :class => 'form-vertical'}) do |f| %>
-      <%= f.input_field :title, :placeholder => "Article Title...", class: "span4 pull-left" %>
-  </div>
-  <div class="well span5 clearfix">
-      <%= f.input :body, label: false, input_html: {"ace-editor" => "", "ace-mode" => "markdown", "ace-theme" => "github", class: "span5", style: "height: 300px;"} %>
-    </br>
-      <%= f.button :submit, "Twoot", class: "btn btn-info pull-left" %>
-    <% end %>
-  </div>
+<div class="well">
+  <%= simple_form_for(article, :html => {:multipart => true, :class => 'form-vertical'}) do |f| %>
+    <%= f.button :submit, "Publish", class: "btn btn-info span5 pull-right" %>
+    <%= f.input_field :title, :placeholder => "Title / Description", class: "span7 pull-left" %>
+    <%= f.input :body, label: false, input_html: {"ace-editor" => "", "ace-mode" => "markdown", "ace-theme" => "github", class: "span12", style: "height: 350px;"} %>
+  </br>
+  <% end %>
+</div>

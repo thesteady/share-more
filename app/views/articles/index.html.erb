@@ -1,25 +1,17 @@
 <div class="row-fluid">
 
   <div class="span6">
-    <%= text_area_tag 'body', nil, :rows => 10, :cols => 25 %>
+    <%= render 'form', {article: new_article_for(current_user)} %>
   </div>
 
   <div class="span6">
-    If the current article has revisions, they should be listed here. 
-    If the current article has revisions, they should be listed here. 
-    If the current article has revisions, they should be listed here. 
-    If the current article has revisions, they should be listed here. 
-    If the current article has revisions, they should be listed here. 
-    If the current article has revisions, they should be listed here. 
-    If the current article has revisions, they should be listed here. 
-    If the current article has revisions, they should be listed here. 
-    <ul>
-      <% @articles.each do |article| %>
-        <li>
-          <%= link_to article.title, article_path(article) %>
-        </li>
-      <% end %>
+    <ul class="unstyled">
+      <li>revision1, timestamp, <a href="#">revert to?</a> </li>
+      <li>revision2, timestamp, <a href="#">revert to?</a> </li>
+      <li>revision3, timestamp, <a href="#">revert to?</a> </li>
+      <li>revision4, timestamp, <a href="#">revert to?</a> </li>
     </ul>
+      <%= render @articles %>
   </div>
 
 </div>

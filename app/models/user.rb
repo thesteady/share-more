@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :full_name, :twitter_id
 
   has_many :api_keys
-  has_many :articles
+  has_many :articles, :order => "created_at DESC"
 
   has_one :access_token
 
