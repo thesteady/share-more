@@ -22,10 +22,10 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.new(params[:article])
-
+    @article.published = 1
     @article.save
 
-    redirect_to article_path(@article)
+    redirect_to root_path
   end
 
   def destroy
