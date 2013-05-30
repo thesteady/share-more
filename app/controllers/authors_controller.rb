@@ -1,5 +1,4 @@
 class AuthorsController < ApplicationController
-  before_filter :require_login, :except => [:new, :create]
   
   def index
     if current_user == Author.find_by_email("blair81@gmail.com")

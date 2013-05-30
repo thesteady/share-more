@@ -8,19 +8,15 @@
       </button>
       <%= link_to title, root_path, class: "brand" %>
       <div class="nav-collapse collapse">
-        <ul class="nav">
-          <li class="active"><a href="#">Home</a></li>
+        <ul class="nav pull-right">
           <% if logged_in? %>
             <li><%= link_to current_user.username, '#' %></li>
-            <li><%= link_to 'Logout', logout_path %></li>
-          <% else %>
-            <li><%= link_to 'Login / Signup', signup_path %></li>
-          <% end %>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i><b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
+              <li><%= link_to 'Logout', logout_path %></li>
+              <li><a href="#">Edit Profile Details</a></li>
+              <li><a href="#">Refresh APIKey</a></li>
               <li><a href="#">Something else here</a></li>
               <li class="divider"></li>
               <li class="nav-header">Nav header</li>
@@ -28,6 +24,9 @@
               <li><a href="#">One more separated link</a></li>
             </ul>
           </li>
+          <% else %>
+            <li><%= link_to 'Login / Signup', signup_path %></li>
+          <% end %>
         </ul>
       </div><!--/.nav-collapse -->
     </div>

@@ -19,7 +19,7 @@ class OauthService
     if Rails.env.production?
       "http://tweetgists.herokuapp.com/oauth/callback"
     else
-      "http://58mk.localtunnel.com"
+      "http://0.0.0.0:3000/oauth/callback"
     end
   end
 end

@@ -1,9 +1,8 @@
 Blogger::Application.routes.draw do
   root :to => "articles#index"
 
-  resource :authors
+  resource :users
   resources :articles
-  resources :author_sessions
 
   post 'refresh' => 'authors#refresh',  :as => :refresh
   get 'login'    => 'oauths#oauth',     :as => :login

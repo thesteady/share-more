@@ -1,12 +1,12 @@
 class ArticlesController < ApplicationController
   def index
-    # if current_user.present?
-    #   @articles = current_user.articles.all
-    #   render :layout => 'application'
-    # else
+    if current_user.present?
+      @articles = current_user.articles.all
+      render :layout => 'application'
+    else
       @articles = []
-    #   render :layout => 'layouts/landing'
-    # end
+      render :layout => 'layouts/landing'
+    end
 
   end
 

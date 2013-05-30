@@ -1,7 +1,25 @@
-<ul>
-  <% @articles.each do |article| %>
-    <li>
-      <%= link_to article.title, article_path(article) %>
-    </li>
-  <% end %>
-</ul>
+<div class="row-fluid">
+
+  <div class="span6">
+    <%= text_area_tag 'body', nil, :rows => 10, :cols => 25 %>
+  </div>
+
+  <div class="span6">
+    If the current article has revisions, they should be listed here. 
+    If the current article has revisions, they should be listed here. 
+    If the current article has revisions, they should be listed here. 
+    If the current article has revisions, they should be listed here. 
+    If the current article has revisions, they should be listed here. 
+    If the current article has revisions, they should be listed here. 
+    If the current article has revisions, they should be listed here. 
+    If the current article has revisions, they should be listed here. 
+    <ul>
+      <% @articles.each do |article| %>
+        <li>
+          <%= link_to article.title, article_path(article) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
