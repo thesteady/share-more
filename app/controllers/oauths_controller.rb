@@ -9,11 +9,14 @@ class OauthsController < ApplicationController
   end
       
   def callback
+    Rails.logger.info("PARAMS: #{params.inspect}")
     client = OauthService.prepare
     access_token = client.authorize(
         session[:request_token_token],
         session[:request_token_secret],
         :oauth_verifier => params[:oauth_verifier])
+    
+    Rails.logger.info("ACCESS_TOKEN: #{access_token.params}")
     
     user_args = OauthService.new(access_token.params)
     

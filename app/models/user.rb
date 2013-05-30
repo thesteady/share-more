@@ -10,15 +10,15 @@ class User < ActiveRecord::Base
     self.find_from_service(user_args) || self.create_from_service(user_args)
   end
 
-  def self.find_from_service(user)
-    self.find_by_username(user.screen_name)
+  def self.find_from_service(user_args)
+    self.find_by_username(user_args.screen_name)
   end
 
-  def self.create_from_service(user)
-    user = self.create(username: user.screen_name, token: user.user_id)
+  def self.create_from_service(user_args)
+    user = self.create(username: user_args.screen_name, token: user_args.user_id)
     user.create_access_token(
-      token: user.oauth_token,
-      secret: user.oauth_token_secret
+      token: user_args.oauth_token,
+      secret: user_args.oauth_token_secret
       )
     user
   end
