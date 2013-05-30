@@ -1,4 +1,21 @@
 module ObjectCreationMethods
+
+  def new_article(overrides = {})
+    defaults = {
+      title: "article title"
+    }
+
+    article = Article.new(defaults.merge(overrides))
+    article.user_id = create_user.id
+    article
+  end
+
+  def create_article(overrides = {})
+    article = new_article(overrides)
+    article.save
+    article
+  end
+
   def new_user(overrides = {})
     defaults = {
       username: "username",

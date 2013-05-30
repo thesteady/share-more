@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-$('textarea#article_body').keyup(function() {
+$('textarea#article_revision_attributes_body').keyUp(function() {
     var cs = $(this).val().length;
     $('#charnum').text(cs);
 });

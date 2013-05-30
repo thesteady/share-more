@@ -36,6 +36,60 @@ describe User do
     end
   end
 
+  context 'creating users from the service' do 
+    describe '.find_or_create' do 
+      it 'should find or create a user from the service auth'
+      it 'should break properly if the service is down'
+    end
+
+    describe '.find_from_service' do 
+      it 'should find the user if they exist'
+      it 'should return nil if they do not exist'
+    end
+
+    describe '.create_from_service' do 
+      it 'should create a user from the service provider'
+      it 'should fallback properly if given bad data'
+    end
+  end
+
+  describe '#draft' do 
+    let(:user) do
+      create_user
+    end
+
+    before do
+      expect(user).to be_valid
+    end
+
+    it 'should return the most recent article, if unpublished' do 
+      article = user.articles.create(
+        :title => "stuff",
+        :published => 0)
+      
+      expect(user.draft.id).to eq article.id
+    end
+
+    it 'should return nil if the most recent article is published' do 
+      old_draft = user.articles.create(
+        :title => "old draft",
+        :published => 0)
+      
+      published_article = user.articles.create(
+        :title => "published",
+        :published => 1)
+
+      new_draft = user.articles.create(
+        :title => "new draft",
+        :published => 0)
+
+      article = user.articles.create(
+        :title => "published",
+        :published => 1)
+      expect(user.draft).to eq nil
+    end
+  end
+
   describe '#api_keys' do 
     let(:user) do
       create_user

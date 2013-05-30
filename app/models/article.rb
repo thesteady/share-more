@@ -1,13 +1,17 @@
 class Article < ActiveRecord::Base
-  attr_accessible :title, :revision_attributes
+  attr_accessible :title, :published, :revisions_attributes
   belongs_to :user
 
 
-  has_one :revision
-  accepts_nested_attributes_for :revision, :allow_destroy => true
+  has_many :revisions, :order => "created_at DESC"
+
+  accepts_nested_attributes_for :revisions, :allow_destroy => true
+
+  scope :published, where( :published => 1 )
+  scope :drafts, where( :published => 0 )
 
   def body
-    revision.body
+    revisions.first.body
   end
 
 end

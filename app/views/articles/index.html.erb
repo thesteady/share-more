@@ -1,17 +1,28 @@
+<% if current_user %>
 <div class="row-fluid">
 
   <div class="span6">
-    <%= render 'form', {article: new_article_for(current_user)} %>
+    <%= render 'form', {article: article_for(current_user)} %>
   </div>
 
   <div class="span6">
-    <ul class="unstyled">
-      <li>revision1, timestamp, <a href="#">revert to?</a> </li>
-      <li>revision2, timestamp, <a href="#">revert to?</a> </li>
-      <li>revision3, timestamp, <a href="#">revert to?</a> </li>
-      <li>revision4, timestamp, <a href="#">revert to?</a> </li>
+    <% if current_user.draft %>
+    <p class="lead pull-right">started <%= time_ago_in_words(current_user.draft.created_at) %> ago...</p>
+    <h3>Draft: <%= (current_user.draft.title || "un-titled").titleize %></h3>
+    Recent Revisions
+    <ul>
+      <% current_user.draft.revisions.each do |revision|%>
+      <li>
+        <p>saved: <%= time_ago_in_words revision.created_at %>
+          <%= "#{link_to 'show', '#'}|#{link_to 'revert to', '#'}|#{link_to 'delete', '#'}".html_safe %>
+        </p>
+        <p><%= revision.body %></p>
+      </li>
+      <% end %>
     </ul>
+    <% end %>
       <%= render @articles %>
   </div>
 
 </div>
+<% end %>

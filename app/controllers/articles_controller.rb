@@ -2,12 +2,13 @@ class ArticlesController < ApplicationController
   # before_filter :require_login, :only => [:index]
   
   def index
-    if current_user.present?
-      @articles = current_user.articles
-      render :layout => 'application'
-    else
+    if current_user == nil
       @articles = []
       render :layout => 'layouts/landing'
+    else
+      @articles = current_user.articles.published
+
+      render :layout => 'application'
     end
 
   end
@@ -22,9 +23,13 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.new(params[:article])
-    @article.published = 1
+    if params[:save_revision]
+      @article.published = 0
+    else
+      @article.published = 1
+    end
     @article.save
-
+    
     redirect_to root_path
   end
 
@@ -42,10 +47,18 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
+
+    if params[:save_revision]
+      @article.published = 0
+    else
+      @article.published = 1
+    end
+
+    @article.save
     @article.update_attributes(params[:article])
 
     flash[:message] = "Article '#{@article.title}' Updated!"
 
-    redirect_to article_path(@article)
+    redirect_to root_path
   end
 end
