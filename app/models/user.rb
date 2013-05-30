@@ -4,16 +4,24 @@ class User < ActiveRecord::Base
   has_many :api_keys
   has_many :articles
 
-  def self.find_or_create(user) ###user[:token] and user[:verifier]
-    self.find_from_service(user) || self.create_from_service(user)
+  has_one :access_token
+
+  def self.find_or_create(user_args)
+    self.find_from_service(user_args) || self.create_from_service(user_args)
   end
 
   def self.find_from_service(user)
-    false
+    self.find_by_username(user.screen_name)
   end
 
   def self.create_from_service(user)
-    User.create
+    user = self.create(username: user.screen_name, token: user.user_id)
+    :oauth_token, :oauth_token_secret
+    user.create_access_token(
+      token: user.oauth_token,
+      secret: user.oauth_token_secret
+      )
+    user
   end
 
   after_create :build_first_key

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530000304) do
+ActiveRecord::Schema.define(:version => 20130530024330) do
+
+  create_table "access_tokens", :force => true do |t|
+    t.string   "token"
+    t.string   "secret"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "access_tokens", ["user_id"], :name => "index_access_tokens_on_user_id"
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
