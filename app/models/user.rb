@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
 
   def self.create_from_service(user)
     user = self.create(username: user.screen_name, token: user.user_id)
-    :oauth_token, :oauth_token_secret
     user.create_access_token(
       token: user.oauth_token,
       secret: user.oauth_token_secret
