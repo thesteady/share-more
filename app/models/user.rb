@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :email, :full_name, :token
+  attr_accessible :username, :email, :full_name, :twitter_id
 
   has_many :api_keys
   has_many :articles
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   end
 
   def self.create_from_service(user_args)
-    user = self.create!(username: user_args.screen_name, token: user_args.user_id)
+    user = self.create!(username: user_args.screen_name, twitter_id: user_args.user_id.to_i)
     user.create_access_token!(
       token: user_args.oauth_token,
       secret: user_args.oauth_token_secret
