@@ -1,23 +1,23 @@
 module ObjectCreationMethods
-  def new_author(overrides = {})
+  def new_user(overrides = {})
     defaults = {
       username: "username",
       email: "example@example.com"
     }
-    Author.new(defaults.merge(overrides))
+    User.new(defaults.merge(overrides))
   end
 
-  def create_author(overrides = {})
-    author = new_author(overrides)
-    author.save!
-    author
+  def create_user(overrides = {})
+    user = new_user(overrides)
+    user.save!
+    user
   end
 
   def new_api_key(overrides = {})
     defaults = {
       expired: false
     }
-    create_author.api_keys.new(defaults.merge(overrides))
+    create_user.api_keys.new(defaults.merge(overrides))
   end
 
   def create_api_key(overrides = {})

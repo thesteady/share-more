@@ -26,6 +26,17 @@ Rails.application.config.sorcery.configure do |config|
   #
   # config.cookie_domain =
 
+  
+  # -- remember_me --
+  # allow the remember_me cookie to settable through AJAX
+  # Default: `true`
+  #
+  # user.remember_me_httponly =
+  
+  # How long in seconds the session length will be
+  # Default: `604800`
+  #
+  # user.remember_me_for =
 
   # -- session timeout --
   # How long in seconds to keep the session alive.
@@ -80,6 +91,17 @@ Rails.application.config.sorcery.configure do |config|
   # config.ca_file =
 
 
+  # For information about LinkedIn API:
+  # - user info fields go to https://developer.linkedin.com/documents/profile-fields
+  # - access permissions go to https://developer.linkedin.com/documents/authentication#granting
+  #
+  # config.linkedin.key = ""
+  # config.linkedin.secret = ""
+  # config.linkedin.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=linkedin"
+  # config.linkedin.user_info_fields = ['first-name', 'last-name']
+  # config.linkedin.user_info_mapping = {first_name: "firstName", last_name: "lastName"}
+  # config.linkedin.access_permissions = ['r_basicprofile'] 
+  #
   # Twitter wil not accept any requests nor redirect uri containing localhost,
   # make sure you use 0.0.0.0:3000 to access your app in development
   #
@@ -92,6 +114,7 @@ Rails.application.config.sorcery.configure do |config|
   # config.facebook.secret = ""
   # config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
   # config.facebook.user_info_mapping = {:email => "name"}
+  # config.facebook.access_permissions = ["email", "publish_stream"]
   #
   # config.github.key = ""
   # config.github.secret = ""
@@ -102,6 +125,11 @@ Rails.application.config.sorcery.configure do |config|
   # config.google.secret = ""
   # config.google.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=google"
   # config.google.user_info_mapping = {:email => "email", :username => "name"}
+  #
+  # config.vk.key = ""
+  # config.vk.secret = ""
+  # config.vk.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=vk"
+  # config.vk.user_info_mapping = {:login => "domain", :name => "full_name"}
   #
   # To use liveid in development mode you have to replace mydomain.com with
   # a valid domain even in development. To use a valid domain in development
@@ -218,14 +246,14 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `nil`
     #
     # user.user_activation_mailer =
-    
-    
+
+
     # when true sorcery will not automatically
     # email activation details and allow you to
     # manually handle how and when email is sent.
     # Default: `false`
     #
-    # user.activation_mailer_disabled = 
+    # user.activation_mailer_disabled =
 
 
     # activation needed email method on your mailer class.
@@ -282,17 +310,9 @@ Rails.application.config.sorcery.configure do |config|
     # manually handle how and when email is sent
     # Default: `false`
     #
-    # user.reset_password_mailer_disabled =                                      
+    # user.reset_password_mailer_disabled =
 
-                                                                          
-    # reset password email                                                                                   
-    # method on your mailer
-    # class.
-    # Default: `:reset_password_email`
-    #
-    # user.reset_password_email_method_name =                            
 
-                                                                                         
     # how many seconds before the reset request expires. nil for never expires.
     # Default: `nil`
     #
@@ -329,6 +349,26 @@ Rails.application.config.sorcery.configure do |config|
     #
     # user.login_lock_time_period =
 
+    # Unlock token attribute name
+    # Default: `:unlock_token`
+    #
+    # user.unlock_token_attribute_name =
+
+    # Unlock token mailer method
+    # Default: `:send_unlock_token_email`
+    #
+    # user.unlock_token_email_method_name =
+
+    # when true sorcery will not automatically
+    # send email with unlock token
+    # Default: `false`
+    #
+    # user.unlock_token_mailer_disabled = true
+
+    # Unlock token mailer class
+    # Default: `nil`
+    #
+    # user.unlock_token_mailer = UserMailer
 
     # -- activity logging --
     # Last login attribute name.
@@ -382,5 +422,5 @@ Rails.application.config.sorcery.configure do |config|
 
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
-  config.user_class = "Author"
+  config.user_class = "User"
 end

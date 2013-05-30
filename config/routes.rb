@@ -6,7 +6,9 @@ Blogger::Application.routes.draw do
   resources :author_sessions
 
   post 'refresh' => 'authors#refresh',         :as => :refresh
-  get 'login'    => 'author_sessions#new',     :as => :login
+  get 'login'    => 'oauths#oauth',            :as => :login
+  get 'signup'   => 'oauths#oauth',            :as => :signup
   get 'logout'   => 'author_sessions#destroy', :as => :logout
-  get 'signup'   => 'authors#new',             :as => :signup
+
+  match "oauth/callback" => "oauths#callback", :as => :callback
 end

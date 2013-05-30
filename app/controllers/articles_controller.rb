@@ -1,23 +1,12 @@
 class ArticlesController < ApplicationController
-  before_filter :require_login, :except => [:index, :show]
-  # layout :layout_by_resource, :only => [:index]
-
-  # def layout_by_resource
-  #   if current_user.present?
-  #     'application'
-  #    else
-  #     'landing'
-  #   end
-  # end
-
   def index
-    if current_user.present?
-      @articles = current_user.articles.all
-      render :layout => 'application'
-    else
+    # if current_user.present?
+    #   @articles = current_user.articles.all
+    #   render :layout => 'application'
+    # else
       @articles = []
-      render :layout => 'layouts/landing'
-    end
+    #   render :layout => 'layouts/landing'
+    # end
 
   end
 

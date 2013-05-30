@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529204116) do
+ActiveRecord::Schema.define(:version => 20130530000304) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
@@ -19,7 +19,10 @@ ActiveRecord::Schema.define(:version => 20130529204116) do
     t.boolean  "expired"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "user_id"
   end
+
+  add_index "api_keys", ["user_id"], :name => "index_api_keys_on_user_id"
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -27,18 +30,11 @@ ActiveRecord::Schema.define(:version => 20130529204116) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "author_id"
+    t.integer  "user_id"
   end
 
   add_index "articles", ["author_id"], :name => "index_articles_on_author_id"
-
-  create_table "authors", :force => true do |t|
-    t.string   "username",         :null => false
-    t.string   "email"
-    t.string   "crypted_password"
-    t.string   "salt"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
+  add_index "articles", ["user_id"], :name => "index_articles_on_user_id"
 
   create_table "revisions", :force => true do |t|
     t.text     "body"
@@ -49,5 +45,14 @@ ActiveRecord::Schema.define(:version => 20130529204116) do
   end
 
   add_index "revisions", ["article_id"], :name => "index_revisions_on_article_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "full_name"
+    t.string   "email"
+    t.string   "token"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

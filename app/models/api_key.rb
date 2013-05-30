@@ -1,8 +1,8 @@
 class ApiKey < ActiveRecord::Base
   attr_accessible :expired
-  belongs_to :author
+  belongs_to :user
 
-  validates_presence_of :author_id
+  validates_presence_of :user_id
   validates :expired, :inclusion => { :in => [true, false] }
 
   before_create :generate_access_token
