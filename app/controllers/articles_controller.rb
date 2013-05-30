@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :require_login, :only => [:index]
+  # before_filter :require_login, :only => [:index]
   
   def index
     if current_user.present?
