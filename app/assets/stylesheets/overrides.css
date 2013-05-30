@@ -38,8 +38,32 @@ body {
 }
 
 .row-fluid {
-width: 80%;
-padding-top: 5%;
-margin-left: auto;
-margin-right: auto;
+  width: 80%;
+  padding-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.articleShow {
+  padding: 40px 60px 60px 60px;
+  width: 60%;
+  margin: 100px auto 20px auto;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #e3e3e3;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.articleShow h1{
+  font-size: 70px;
+  line-height: 60px;
+}
+
+.articleShow p{
+  font-size: 30px;
+  line-height: 1em;
 }
