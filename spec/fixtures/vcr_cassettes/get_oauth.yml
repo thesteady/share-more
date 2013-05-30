@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.twitter.com/oauth/request_token
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_body_hash="2jmj7l5rSw0yVb%2FvlWAYkK%2FYBwk%3D", oauth_callback="http%3A%2F%2F0.0.0.0%3A3000%2Foauth%2Fcallback",
+        oauth_consumer_key="hs9cu12SxUUooBCVMUuw", oauth_nonce="95nTlIuI0Esj88qawdXPnskSVHOiY65CQlopjuQ8",
+        oauth_signature="S3i10krkcI4vCDF4NUChR3VGfjk%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1369924676", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Length:
+      - '145'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Thu, 30 May 2013 14:37:57 GMT
+      Etag:
+      - ! '"ebc36c5a916e47f2321b33e2f884c690"'
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Thu, 30 May 2013 14:37:57 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tfe
+      Set-Cookie:
+      - _twitter_sess=BAh7BzoPY3JlYXRlZF9hdGwrCJ%252Bu3%252FU%252BAToHaWQiJTcwYTU4YzgwM2VhYzE3%250AZmY5YTgxM2M4YzAyZDQ5NTE4--7d6b21fc44f6036acf00d07496bcf16c3b0e2187;
+        domain=.twitter.com; path=/; HttpOnly
+      - guest_id=v1%3A136992467726722259; Domain=.twitter.com; Path=/; Expires=Sat,
+        30-May-2015 14:37:57 UTC
+      Status:
+      - 200 OK
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Mid:
+      - 2d06d7a791a52dccdf2ee7ad101e8e022023a364
+      X-Runtime:
+      - '0.02224'
+      X-Transaction:
+      - 91d6316f31d2bb16
+      X-Ua-Compatible:
+      - IE=9,chrome=1
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: US-ASCII
+      string: oauth_token=n45pNpt65WLw6mYBosrIDKJjquxBDbWCVW6zHtUM&oauth_token_secret=K2WX9ZbQlzWRBVCVzxhbwe8LkzzcK4TUbm582gyQrjs&oauth_callback_confirmed=true
+    http_version: 
+  recorded_at: Thu, 30 May 2013 14:37:57 GMT
+recorded_with: VCR 2.5.0

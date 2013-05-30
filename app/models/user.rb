@@ -1,10 +1,13 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :full_name, :token, :username
+  attr_accessible :username, :email, :full_name, :token
 
   has_many :api_keys
   has_many :articles
 
   has_one :access_token
+
+  validates_presence_of :username
+  validates_uniqueness_of :username, :email
 
   def self.find_or_create(user_args)
     self.find_from_service(user_args) || self.create_from_service(user_args)

@@ -56,7 +56,11 @@ GEM
     crack (0.3.2)
     debug_inspector (0.0.2)
     diff-lcs (1.2.4)
+    em-websocket (0.5.0)
+      eventmachine (>= 0.12.9)
+      http_parser.rb (~> 0.5.3)
     erubis (2.7.0)
+    eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     faraday (0.8.7)
@@ -69,12 +73,17 @@ GEM
       lumberjack (>= 1.0.2)
       pry (>= 0.9.10)
       thor (>= 0.14.6)
+    guard-livereload (1.4.0)
+      em-websocket (>= 0.5.0)
+      guard (>= 1.8.0)
+      multi_json (~> 1.7)
     guard-rspec (3.0.0)
       guard (>= 1.8)
       rspec (~> 2.13)
     haml (4.0.3)
       tilt
     hike (1.2.2)
+    http_parser.rb (0.5.3)
     httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
@@ -212,11 +221,13 @@ DEPENDENCIES
   binding_of_caller
   capybara
   coffee-rails (~> 3.2.1)
+  guard-livereload
   guard-rspec
   haml
   jquery-rails
   pg
   rails (= 3.2.13)
+  rb-fsevent
   rspec-rails (~> 2.0)
   sass-rails (~> 3.2.3)
   simple_form

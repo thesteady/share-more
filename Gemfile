@@ -27,11 +27,13 @@ group :development do
 end
 
 group :test, :development do 
+  gem 'vcr'
   gem 'sqlite3'
   gem 'rspec-rails', '~> 2.0'
   gem 'capybara'
   gem 'guard-rspec'
-  gem 'vcr'
+  gem 'rb-fsevent'
+  gem 'guard-livereload'
 end
 
 group :assets do

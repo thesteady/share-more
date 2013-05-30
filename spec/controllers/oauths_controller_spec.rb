@@ -4,16 +4,10 @@ describe OauthsController do
 
   describe "GET 'oauth'" do
     it "returns http success" do
-      get 'oauth'
-      response.should be_success
+      VCR.use_cassette("get_oauth") do
+        get 'oauth'
+        response.should be_redirect
+      end
     end
   end
-
-  describe "GET 'callback'" do
-    it "returns http success" do
-      get 'callback'
-      response.should be_success
-    end
-  end
-
 end

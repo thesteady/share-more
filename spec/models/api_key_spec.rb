@@ -6,24 +6,24 @@ describe ApiKey do
       create_api_key
     end
 
-    let(:author)do 
-      api_key.author
+    let(:user)do 
+      api_key.user
     end
 
     before(:each) do 
       expect(api_key).to be_valid
-      expect(author).to be_valid
+      expect(user).to be_valid
     end
 
-    it 'should have an author' do 
-      api_key.author_id = nil
+    it 'should have a user' do 
+      api_key.user_id = nil
       api_key.save
       expect(api_key).to be_invalid
     end
 
     it 'should have a unique access_token' do 
       token = api_key.access_token
-      another_key = author.api_keys.create!(expired: false)
+      another_key = user.api_keys.create!(expired: false)
       expect(another_key).to be_valid
 
       another_key.access_token = token
@@ -38,12 +38,12 @@ describe ApiKey do
 
     it 'creating a new key should expire other keys for the same user' do 
       expect(api_key.expired).to eq false
-      author = api_key.author
-      expect(author).to be_valid
+      user = api_key.user
+      expect(user).to be_valid
 
-      new_key = author.api_keys.create!(expired: false)
+      new_key = user.api_keys.create!(expired: false)
 
-      expect(new_key.author).to eq author
+      expect(new_key.user).to eq user
       expect(new_key.expired).to eq false
 
       expect(ApiKey.find(new_key.id).expired).to eq false

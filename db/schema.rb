@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530024330) do
+ActiveRecord::Schema.define(:version => 20130530144839) do
 
   create_table "access_tokens", :force => true do |t|
     t.string   "token"
@@ -60,9 +60,11 @@ ActiveRecord::Schema.define(:version => 20130530024330) do
     t.string   "username"
     t.string   "full_name"
     t.string   "email"
-    t.string   "token"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "twitter_id"
   end
+
+  add_index "users", ["twitter_id"], :name => "index_users_on_twitter_id"
 
 end

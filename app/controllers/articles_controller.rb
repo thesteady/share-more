@@ -1,7 +1,9 @@
 class ArticlesController < ApplicationController
+  before_filter :require_login, :only => [:index]
+  
   def index
     if current_user.present?
-      @articles = current_user.articles.all
+      @articles = current_user.articles
       render :layout => 'application'
     else
       @articles = []
