@@ -16,6 +16,10 @@ class OauthService
   end
 
   def self.url
-    "http://tweetgists.herokuapp.com/oauth/callback"
+    if Rails.env.production?
+      "http://tweetgists.herokuapp.com/oauth/callback"
+    else
+      "http://58mk.localtunnel.com"
+    end
   end
 end

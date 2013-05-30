@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_from_service(user_args)
-    self.find_by_username(user_args.screen_name)
+    self.find_by_username(user_args.screen_name) || false
   end
 
   def self.create_from_service(user_args)

@@ -22,7 +22,7 @@ class OauthsController < ApplicationController
     
     if @user = User.find_or_create(user_args)
       login(@user)
-      redirect_to root_path, :notice => "#{@user.screen_name} Logged in from Twitter!"
+      redirect_to root_path, :notice => "Logged in from Twitter!"
     else
       redirect_to root_path, :alert => "Failed to login from twitter!"
     end
