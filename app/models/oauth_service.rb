@@ -5,4 +5,8 @@ class OauthService
       :consumer_secret => ENV['TWITTER_CONSUMER_SECRET']
       )
   end
+
+  def self.url
+    "http://tweetgists.herokuapp.com/oauth/callback"
+  end
 end

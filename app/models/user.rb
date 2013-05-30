@@ -4,15 +4,15 @@ class User < ActiveRecord::Base
   has_many :api_keys
   has_many :articles
 
-  def self.find_or_create(stuff)
-    self.find_from_service(stuff) || self.create_from_service(stuff)
+  def self.find_or_create(user) ###user[:token] and user[:verifier]
+    self.find_from_service(user) || self.create_from_service(user)
   end
 
-  def self.find_from_service(stuff)
+  def self.find_from_service(user)
     false
   end
 
-  def self.create_from_service(stuff)
+  def self.create_from_service(user)
     User.create
   end
 

@@ -4,4 +4,8 @@ class ApplicationController < ActionController::Base
   def current_user
     User.first
   end
+
+  def logged_in?
+    false
+  end
 end
