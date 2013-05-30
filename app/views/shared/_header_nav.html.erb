@@ -11,7 +11,7 @@
         <ul class="nav">
           <li class="active"><a href="#">Home</a></li>
           <% if logged_in? %>
-            <li><%= link_to current_user.screen_name, '#' %></li>
+            <li><%= current_user.username %></li>
             <li><%= link_to 'New Article', new_article_path %></li>
             <li><%= link_to 'Logout', logout_path%></li>
           <% else %>
