@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'jquery-rails'
 
-# gem 'paperclip'
 gem 'haml'
 gem 'sorcery'
 gem 'simple_form'
@@ -27,6 +26,7 @@ group :development do
 end
 
 group :test, :development do 
+  
   gem 'vcr'
   gem 'sqlite3'
   gem 'rspec-rails', '~> 2.0'

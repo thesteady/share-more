@@ -2,7 +2,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def current_user
-    @current_user ||= User.find_by_id(session[:user_id])
+    @user ||= (find_by_access_token || find_user_by_session)
+  end
+
+  def find_user_by_session
+    User.find_by_id(session[:user_id])
+  end
+
+  def find_by_access_token
+    if key = ApiKey.find_by_access_token(params[:access_token])
+      key.user
+    end
   end
 
   def logged_in?

@@ -1,7 +1,6 @@
 class Article < ActiveRecord::Base
-  attr_accessible :title, :published, :revisions_attributes
+  attr_accessible :title, :published ,:revisions_attributes
   belongs_to :user
-
 
   has_many :revisions, :order => "created_at DESC"
 

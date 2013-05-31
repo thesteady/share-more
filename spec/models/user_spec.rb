@@ -10,7 +10,7 @@ describe User do
       expect(user).to be_valid
     end
 
-    it 'requires a username' do 
+    it 'requires a username' do
       user.username = nil
       expect(user).to be_invalid
     end
@@ -20,6 +20,7 @@ describe User do
       expect(another_user).to be_valid
 
       expect(user.username).to eq 'username'
+      
       another_user.username = 'username'
       another_user.save
       expect(another_user).to be_invalid

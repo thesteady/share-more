@@ -13,15 +13,12 @@
             <li><%= link_to current_user.username, '#' %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i><b class="caret"></b></a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu span3">
               <li><%= link_to 'Logout', logout_path %></li>
               <li><a href="#">Edit Profile Details</a></li>
-              <li><a href="#">Refresh APIKey</a></li>
-              <li><a href="#">Something else here</a></li>
               <li class="divider"></li>
-              <li class="nav-header">Nav header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
+              <li class="brand">API KEY</li>
+              <li><a href="#modal-text" class="call-modal" title="Clicking this link shows the modal">API KEY</a></li>
             </ul>
           </li>
           <% else %>
@@ -32,3 +29,18 @@
     </div>
   </div>
 </div>
+
+<section class="semantic-content" id="modal-text" tabindex="-1"
+        role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+
+  <div class="modal-inner">
+    <header id="modal-label"><!-- Header --></header>
+    <div class="modal-content">
+      <%= link_to current_user.active_token, '#', :disabled => true %>
+      <%= text_field_tag 'key', current_user.active_token %>
+    </div>
+    <footer><!-- Footer --></footer>
+  </div>
+  <a href="#!" class="modal-close" title="Close this modal" 
+    data-dismiss="modal">×</a>
+</section>
