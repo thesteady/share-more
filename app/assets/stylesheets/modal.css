@@ -56,7 +56,7 @@ html {
 }
 .semantic-content .modal-inner {
   position: absolute;
-  top: 50px;
+  top: 100px;
   left: 50%;
   z-index: 20;
   margin-left: -325px;
@@ -120,14 +120,14 @@ html {
 .semantic-content .modal-close:after {
   content: '×';
   position: absolute;
-  top: 25px;
-  left: 50%;
+  top: 100px;
+  left: 53%;
   z-index: 20;
   margin-left: 285px;
   background: #fff;
   border-radius: 2px;
   padding: 2px 8px;
-  font-size: 1.2em;
+  font-size: 12.0em;
   text-decoration: none;
   text-indent: 0;
 }

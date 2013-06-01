@@ -1,0 +1,15 @@
+<% if current_user.draft %>
+<p class="lead pull-right">started <%= time_ago_in_words(current_user.draft.created_at) %> ago...</p>
+<h3>Draft: <%= (current_user.draft.title || "un-titled").titleize %></h3>
+Recent Revisions
+<ul>
+  <% current_user.draft.revisions.each do |revision|%>
+  <li>
+    <p>saved: <%= time_ago_in_words revision.created_at %>
+      <%= "#{link_to 'show', '#'}|#{link_to 'revert to', '#'}|#{link_to 'delete', '#'}".html_safe %>
+    </p>
+    <p><%= revision.body %></p>
+  </li>
+  <% end %>
+</ul>
+<% end %>

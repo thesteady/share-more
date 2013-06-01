@@ -17,30 +17,15 @@
               <li><%= link_to 'Logout', logout_path %></li>
               <li><a href="#">Edit Profile Details</a></li>
               <li class="divider"></li>
-              <li class="brand">API KEY</li>
-              <li><a href="#modal-text" class="call-modal" title="Clicking this link shows the modal">API KEY</a></li>
+              <li><a href="#api">API KEY</a></li>
             </ul>
           </li>
           <% else %>
-            <li><%= link_to 'Login / Signup', signup_path %></li>
+            <li><%= link_to 'Login / Signup', login_path %></li>
           <% end %>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
   </div>
 </div>
-
-<section class="semantic-content" id="modal-text" tabindex="-1"
-        role="dialog" aria-labelledby="modal-label" aria-hidden="true">
-
-  <div class="modal-inner">
-    <header id="modal-label"><!-- Header --></header>
-    <div class="modal-content">
-      <%= link_to current_user.active_token, '#', :disabled => true %>
-      <%= text_field_tag 'key', current_user.active_token %>
-    </div>
-    <footer><!-- Footer --></footer>
-  </div>
-  <a href="#!" class="modal-close" title="Close this modal" 
-    data-dismiss="modal">×</a>
-</section>
+<%= render 'shared/api_key_modal' %>

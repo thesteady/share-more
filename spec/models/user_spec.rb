@@ -25,16 +25,6 @@ describe User do
       another_user.save
       expect(another_user).to be_invalid
     end
-
-    it 'should not allow duplicate email' do 
-      another_user = create_user(username: "taco", email:"new@email.com")
-      expect(another_user).to be_valid
-
-      expect(user.email).to eq 'example@example.com'
-      another_user.email = 'example@example.com'
-      another_user.save
-      expect(another_user).to be_invalid
-    end
   end
 
   context 'creating users from the service' do 

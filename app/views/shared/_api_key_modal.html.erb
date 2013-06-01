@@ -1,0 +1,18 @@
+<% if logged_in? %>
+<section class="semantic-content" id="api" tabindex="-1"
+        role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+
+  <div class="modal-inner">
+    <header id="modal-label"><h1>TweetGist API KEY!</h1></header>
+    <div class="modal-content">
+      <p class="lead"><i>Your Token:</i><b>"<%= current_user.active_token %>"</b></p>
+      <%=button_to "Refresh Access Token", refresh_path, class: "btn btn-mini btn-info" %>
+    </div>
+    <footer>
+      You have expired <%= current_user.api_keys.inactive.count %> ApiKeys. 
+      <a href='/rubygem.html' target="_blank">Read the Documentation About the RubyGem</a>.</footer>
+  </div>
+  <a href="/" class="modal-close" title="Close this modal" 
+    data-dismiss="modal">×</a>
+</section>
+<% end %>

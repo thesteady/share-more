@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   
+  def new
+    render :layout => 'layouts/landing'  
+  end
+
   def edit
     @user = current_user
   end
@@ -16,7 +20,7 @@ class UsersController < ApplicationController
 
   def refresh
     current_user.expire_old_keys_and_build_new_key
-    redirect_to root_path
+    redirect_to "/#api"
   end
 
   def show
