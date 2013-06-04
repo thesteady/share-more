@@ -28,10 +28,20 @@ describe User do
   end
 
   context 'creating users from the service' do 
-    let(:valid_oauth_args) do 
+    let(:valid_oauth_args) do {
+      user_id: "jsl_demo_09", 
+      screen_name: "59794634", 
+      oauth_token: "59794634-9GFLAF15dwM1zJy8i5xsfX4iVXdNQSSKRvHXUYRo3",
+      oauth_token_secret: "1hNZQ0AZmKfNSyV4w34KKnhPd83yJ6fVUMe0gAVA0"
+    }
     end
     describe '.find_or_create' do 
-      it 'should find or create a user from the service auth'
+      it 'should find or create a user from the service auth' do 
+        user = User.find_or_create(valid_oauth_args)
+        expect(user).to be_valid
+        expect(user.access_token).to_not be_nil
+      end
+
       it 'should break properly if the service is down'
     end
 
