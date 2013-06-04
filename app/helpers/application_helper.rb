@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def title
-    "TweetGists"
+    "ShareMore"
   end
 
   def article_for(user)
