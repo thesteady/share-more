@@ -34,11 +34,12 @@ module ObjectCreationMethods
     defaults = {
       expired: false
     }
-    create_user.api_keys.new(defaults.merge(overrides))
+    create_user.api_keys.build(defaults.merge(overrides))
   end
 
   def create_api_key(overrides = {})
     api_key = new_api_key(overrides)
+    # raise "BOOM"
     api_key.save!
     api_key
   end
