@@ -14,12 +14,4 @@ class OauthService
       :consumer_secret => ENV['TWITTER_CONSUMER_SECRET']
       )
   end
-
-  def self.url
-    if Rails.env.production?
-      "http://share-more.herokuapp.com/oauth/callback"
-    else
-      "http://0.0.0.0:3000/oauth/callback"
-    end
-  end
 end

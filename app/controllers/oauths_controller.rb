@@ -2,7 +2,7 @@ class OauthsController < ApplicationController
   
   def oauth
     client = OauthService.prepare
-    request_token = client.request_token(:oauth_callback => OauthService.url)
+    request_token = client.request_token(:oauth_callback => oauth_callback)
     session[:request_token_token] = request_token.token
     session[:request_token_secret] = request_token.secret
     redirect_to request_token.authorize_url
@@ -35,5 +35,10 @@ class OauthsController < ApplicationController
   def destroy
     session[:user_id] = nil
     redirect_to root_path, notice: "Logged Out"
+  end
+private
+
+  def oauth_callback
+    "#{request.protocol}#{request.host_with_port}/oauth/callback"
   end
 end
