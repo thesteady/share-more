@@ -43,7 +43,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
+    @article = Article.find_by_unique_url(params[:id])
 
     @article.destroy
 
