@@ -37,7 +37,13 @@ class User < ActiveRecord::Base
   end
 
   def active_token
-    active_key.access_token
+    if active_key
+      result = active_key.access_token
+    else
+      # result = active_key.access_token
+      result = build_key.access_token
+    end
+    result
   end
 
   def build_key

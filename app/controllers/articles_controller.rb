@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
     if limit = params[:limit]
       @articles = current_user.articles.published.limit(limit.to_i)
     else
-      @articles = current_user.articles.published
+      @articles = current_user.articles.published.includes(:revisions)
     end
 
     respond_to do |format|

@@ -1,4 +1,12 @@
 class ApiKey < ActiveRecord::Base
+  after_initialize :init
+
+  def init
+    self.expired = true if (self.has_attribute? :bool_value) && self.expired.nil?
+  end
+
+
+
   attr_accessible :expired
   belongs_to :user
 
@@ -9,8 +17,8 @@ class ApiKey < ActiveRecord::Base
   validates_uniqueness_of :access_token
   validates_uniqueness_of :secret_token
   
-  scope :active,  where(:expired=> false).order("created_at DESC")
-  scope :inactive,  where(:expired=> true).order("created_at DESC")
+  scope :active,  where(:expired => false).order("created_at DESC")
+  scope :inactive,  where(:expired => true).order("created_at DESC")
 
   def deactivate
     if self.expired == false

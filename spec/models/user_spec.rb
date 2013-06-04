@@ -105,7 +105,8 @@ describe User do
         expect(user.api_keys.count).to eq count+1
         expect(user.api_keys.active.count).to eq count+1
 
-        user.expire_old_keys_and_build_new_key
+        key = user.expire_old_keys_and_build_new_key
+        expect(key.expired).to eq false
         expect(user.api_keys.active.count).to eq 1
       end
     end
