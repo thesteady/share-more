@@ -29,7 +29,7 @@ class Article < ActiveRecord::Base
 
   def url
     if Rails.env.production?
-      host = "http://something.herokuapp.com/"
+      host = "http://share-more.herokuapp.com/"
     else
       host = "http://0.0.0.0:3000/"
     end

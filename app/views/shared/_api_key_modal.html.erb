@@ -5,8 +5,9 @@
   <div class="modal-inner">
     <header id="modal-label"><h1>TweetGist API KEY!</h1></header>
     <div class="modal-content">
-      <% if %>
+      <% if current_user.active_key %>
       <p class="lead"><i>Your Token:</i><b>"<%= current_user.active_token %>"</b></p>
+      <p class="lead"><i>Your Secret:</i><b>"<%= current_user.active_secret %>"</b></p>
       <% end %>
       <%=button_to "Refresh Access Token", refresh_path, class: "btn btn-mini btn-info" %>
     </div>

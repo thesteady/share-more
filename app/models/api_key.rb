@@ -1,11 +1,9 @@
 class ApiKey < ActiveRecord::Base
-  after_initialize :init
+  # after_initialize :init
 
-  def init
-    self.expired = true if (self.has_attribute? :bool_value) && self.expired.nil?
-  end
-
-
+  # def init
+  #   self.expired = true if (self.has_attribute? :bool_value) && self.expired.nil?
+  # end
 
   attr_accessible :expired
   belongs_to :user
@@ -38,13 +36,13 @@ private
 
   def generate_secret_token
     begin
-      self.secret_token = SecureRandom.urlsafe_base64(48)
+      self.secret_token = SecureRandom.urlsafe_base64(12)
     end while self.class.exists?(secret_token: secret_token)
   end
 
   def generate_access_token
     begin
-      self.access_token = SecureRandom.urlsafe_base64(24)
+      self.access_token = SecureRandom.urlsafe_base64(8)
     end while self.class.exists?(access_token: access_token)
   end
 

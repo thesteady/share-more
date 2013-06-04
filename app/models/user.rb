@@ -40,8 +40,18 @@ class User < ActiveRecord::Base
     if active_key
       result = active_key.access_token
     else
-      # result = active_key.access_token
-      result = build_key.access_token
+      build_key
+      result = active_key.access_token
+    end
+    result
+  end
+
+  def active_secret
+    if active_key
+      result = active_key.secret_token
+    else
+      build_key
+      result = active_key.secret_token
     end
     result
   end
