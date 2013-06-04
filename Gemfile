@@ -10,7 +10,6 @@ gem 'aced_rails'
 gem 'twitter_oauth'
 gem 'twitter'
 
-
 group :production do 
   gem 'pg'
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130604032954) do
+ActiveRecord::Schema.define(:version => 20130604175027) do
 
   create_table "access_tokens", :force => true do |t|
     t.string   "token"
@@ -40,21 +40,11 @@ ActiveRecord::Schema.define(:version => 20130604032954) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
-    t.integer  "published"
     t.string   "unique_url"
+    t.text     "body"
   end
 
   add_index "articles", ["user_id"], :name => "index_articles_on_user_id"
-
-  create_table "revisions", :force => true do |t|
-    t.text     "body"
-    t.integer  "article_id"
-    t.integer  "published"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "revisions", ["article_id"], :name => "index_revisions_on_article_id"
 
   create_table "users", :force => true do |t|
     t.string   "username"

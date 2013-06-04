@@ -4,24 +4,23 @@ describe Article do
   let(:valid_title){"article title"}
   let(:invalid_body){"invalid article body"}
   let(:valid_body){"article body"}
-  let(:valid_article) do 
-    { 
-      :title => valid_title, 
-      :revisions_attributes => [
-        { body: invalid_body },
-        { body: valid_body }
-        ]
-      }
+  let(:valid_article) do
+    { title: valid_title, body: valid_body}
   end
 
-  describe '.accepts_nexted_attributes' do 
-    it 'should create an article, and build a revision' do 
-      article = create_user.articles.create(valid_article)
-      expect(article.title).to eq valid_title
-      expect(article.body).to eq valid_body
+  describe '.options' do 
+    it 'should return a hash of API options' do 
+      root = 'http://share-more.herokuapp.com/api/v1/'
+      options = {
+    links: [
+    {"create_article" => "#{root}articles?access_token={YOUR ACCESS_TOKEN}&article={title: TITLE, body: BODY}"},
+    {"get_article" => "#{root}articles/{ARTICLE_ID}"},
+    {"get_all_articles" => "#{root}articles?access_token={YOUR ACCESS_TOKEN}"}
+  ]
+  }
+      expect(Article.options).to eq options
     end
+
   end
 
-  it 'should'
-  
 end

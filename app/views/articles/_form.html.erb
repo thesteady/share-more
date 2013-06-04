@@ -1,14 +1,11 @@
 <div class="well">
   <%= simple_form_for(article, :html => {:multipart => true, :class => 'form-vertical'}) do |f| %>
-    <div class="btn-group pull-right span5">
-      <%# f.button :submit, "Save", name: 'save_revision' , class: "btn btn-info span7" %>
-      <%= f.button :submit, "Publish", class: "btn btn-info" %>
+    <%= f.input_field :title, :placeholder => "Title / Description", class: "span7 pull-left" %>
+    <%= f.input :body, label: false, input_html: {"ace-editor" => "", "ace-mode" => "markdown", "ace-theme" => "github", class: "span12", style: "height: 350px;"} %>
+  </br>
+    <div class="span6 pull-right">
+      <%= f.button :submit, "Publish", class: "btn btn-info btn-block" %>
       <%# f.button :submit, "Publish", confirm: "Save and Publish to Twitter?", class: "btn btn-info" %>
     </div>
-    <%= f.input_field :title, :placeholder => "Title / Description", class: "span7 pull-left" %>
-      <%= f.simple_fields_for :revisions do |p| %>
-      <%= p.input :body, label: false, input_html: {"ace-editor" => "", "ace-mode" => "markdown", "ace-theme" => "github", class: "span12", style: "height: 350px;"} %>
-      <% end %>
-  </br>
   <% end %>
 </div>

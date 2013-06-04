@@ -9,10 +9,6 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username
 
-  def draft
-    draft ||= most_recent_draft if most_recent_draft == most_recent_article
-  end
-
   def self.find_or_create(user_args)
     self.find_from_service(user_args) || self.create_from_service(user_args)
   end
@@ -67,10 +63,6 @@ class User < ActiveRecord::Base
 
 private
 
-  def most_recent_draft
-    draft ||= articles.drafts.includes(:revisions).first
-  end
-
   def most_recent_article
     article ||= articles.first
   end
@@ -80,4 +72,5 @@ private
       build_key
     end
   end
+  
 end

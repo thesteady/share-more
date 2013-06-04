@@ -1,10 +1,4 @@
 class ApiKey < ActiveRecord::Base
-  # after_initialize :init
-
-  # def init
-  #   self.expired = true if (self.has_attribute? :bool_value) && self.expired.nil?
-  # end
-
   attr_accessible :expired
   belongs_to :user
 

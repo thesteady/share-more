@@ -1,13 +1,6 @@
 class Article < ActiveRecord::Base
-  attr_accessible :title, :body, :published, :unique_url, :revisions_attributes
+  attr_accessible :title, :body, :unique_url
   belongs_to :user
-
-  has_many :revisions, :order => "created_at DESC"
-
-  accepts_nested_attributes_for :revisions, :allow_destroy => true
-
-  scope :published, where( :published => 1 )
-  scope :drafts, where( :published => 0 )
 
   before_create :generate_url
   validates_uniqueness_of :unique_url
@@ -15,8 +8,15 @@ class Article < ActiveRecord::Base
   def as_json(options)
     super(
   :except =>  [:unique_url, :updated_at, :user_id, :id], 
-  :methods => [:article_id,:url,:body]
+  :methods => [:article_id,:url]
   )
+  end
+
+  def self.options
+    root = 'http://share-more.herokuapp.com/api/v1/'
+    [{"create_article" => "#{root}articles?access_token={YOUR ACCESS_TOKEN}&article={title: TITLE, body: BODY}"},
+      {"get_article" => "#{root}articles/{ARTICLE_ID}"},
+      {"get_all_articles" => "#{root}articles?access_token={YOUR ACCESS_TOKEN}"}]
   end
 
   def article_id
@@ -36,10 +36,6 @@ class Article < ActiveRecord::Base
     host + unique_url
   end
 
-  def body
-    revisions.first.body
-  end
-
   def to_param
     unique_url
   end
@@ -48,13 +44,6 @@ class Article < ActiveRecord::Base
     begin
       self.unique_url = SecureRandom.urlsafe_base64(5)
     end while self.class.exists?(unique_url: unique_url)
-  end
-
-  def publish_key(input)
-    {
-      1 => "true",
-      0 => "false"
-      }[input]
   end
 
 end

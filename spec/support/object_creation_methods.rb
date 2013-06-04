@@ -2,9 +2,9 @@ module ObjectCreationMethods
 
   def new_article(overrides = {})
     defaults = {
-      title: "article title"
+      title: "article title",
+      body: "article body"
     }
-
     article = Article.new(defaults.merge(overrides))
     article.user_id = create_user.id
     article
@@ -39,7 +39,6 @@ module ObjectCreationMethods
 
   def create_api_key(overrides = {})
     api_key = new_api_key(overrides)
-    # raise "BOOM"
     api_key.save!
     api_key
   end

@@ -13,7 +13,7 @@ body {
 
 /* Main marketing message and sign up button */
 .jumbotron {
-  margin: 70px 0 70px 0;
+  margin: 70px 0 0 0;
   text-align: center;
 }
 .jumbotron h1 {
@@ -25,8 +25,10 @@ body {
   line-height: 1.25;
 }
 .jumbotron .btn {
-  font-size: 21px;
+  font-size: 50px;
+  line-height: 50px;
   padding: 14px 24px;
+  
 }
 
 /* Supporting marketing content */
