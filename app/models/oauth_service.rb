@@ -17,7 +17,7 @@ class OauthService
 
   def self.url
     if Rails.env.production?
-      "http://tweetgists.herokuapp.com/oauth/callback"
+      "http://share-more.herokuapp.com/oauth/callback"
     else
       "http://0.0.0.0:3000/oauth/callback"
     end

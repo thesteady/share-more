@@ -87,7 +87,6 @@ describe User do
     end
     describe '#build_first_key' do 
       it 'should create an api_key after the user is first created' do 
-        expect(user.api_keys.first).to be_kind_of ApiKey
         expect(user.api_keys.first.class).to eq ApiKey
         expect(User.count).to eq 1
         expect(ApiKey.count).to eq 1

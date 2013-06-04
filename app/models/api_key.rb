@@ -13,7 +13,7 @@ class ApiKey < ActiveRecord::Base
   scope :inactive,  where(:expired=> true).order("created_at DESC")
 
   def deactivate
-    unless self.expired == true
+    if self.expired == false
       self.toggle(:expired)
       self.save
     end

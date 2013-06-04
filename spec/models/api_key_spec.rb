@@ -60,6 +60,8 @@ describe ApiKey do
 
     it 'creating a new key should expire other keys for the same user' do 
       expect(api_key.expired).to eq false
+      expect(api_key.access_token).to_not be_nil
+      expect(api_key.secret_token).to_not be_nil
       user = api_key.user
       expect(user).to be_valid
 
